@@ -1,0 +1,48 @@
+<h1>Test Component</h1>
+
+<hr>
+
+<h2>Date: {{date}}</h2>
+<h2>PrimeNG: <p-button label="Primary"></p-button></h2>
+
+<hr>
+
+<div class="card p-fluid">
+    <h5>Dialog</h5>
+    <p-dialog header="Dialog" [(visible)]="display" [modal]="true" showEffect="fade" [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
+        <p class="line-height-3 m-0">
+            This is a dialog box.    
+        </p>
+        <ng-template pTemplate="footer">
+                <button pButton icon="pi pi-check" (click)="display=false" label="Ok" class="p-button-outlined"></button>
+        </ng-template>
+    </p-dialog>
+    <div class="grid">
+        <div class="col-12">
+            <button (click)="display=true" pButton icon="pi pi-external-link" label="Show" style="width:auto;"></button>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h5>Toast</h5>
+    <p-toast key="tst" [baseZIndex]="99999"></p-toast>
+    <button type="button" pButton (click)="showSuccessViaToast()" label="Success" class="p-button-success mr-2"></button>
+</div>
+
+<div class="card">
+    <h5>Linear Chart</h5>
+    <p-chart type="line" [data]="lineData" [options]="lineOptions"></p-chart>
+</div> 
+
+<div class="card">
+    <h5>Advanced</h5>
+    <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
+                  [multiple]="true" accept="image/*" [maxFileSize]="1000000">
+        <ng-template pTemplate="content">
+            <ul *ngIf="uploadedFiles.length">
+                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+            </ul>
+        </ng-template>
+    </p-fileUpload>
+</div>
