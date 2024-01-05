@@ -8,7 +8,8 @@ import { CommonModule } from '@angular/common';
 </code></pre>
     `,
 })
-export class AppCodeComponent{
+
+export class AppCodeComponent {
 
     @Input() lang = 'markup';
 
@@ -16,11 +17,6 @@ export class AppCodeComponent{
 
     constructor(public el: ElementRef) { }
 
-    // ngAfterViewInit() {
-    //     if (window['Prism']) {
-    //         window['Prism'].highlightElement(this.codeViewChild.nativeElement);
-    //     }
-    // }
 }
 
 @NgModule({

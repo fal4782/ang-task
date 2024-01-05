@@ -162,11 +162,11 @@ export class AppMainComponent {
     }
 
     isSlim() {
-        return true;
+        return this.app.layoutMode === 'slim';
     }
 
     isStatic() {
-        return this.app.layoutMode === 'static';
+        return true
     }
 
 }

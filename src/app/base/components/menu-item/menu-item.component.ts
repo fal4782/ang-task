@@ -3,78 +3,44 @@ import { Router, NavigationEnd } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { MenuService } from './app.menu.service';
-import { AppMainComponent } from './app.main.component';
+import { MenuService } from '../../../app.menu.service';
+import { AppMainComponent } from '../../../app.main.component';
 
 @Component({
-    /* tslint:disable:component-selector */
-    selector: '[app-menuitem]',
-    /* tslint:enable:component-selector */
-    template: `
-        <ng-container>
-            <div *ngIf="root && item.visible !== false">
-                <span class="layout-menuitem-text">{{item.label}}</span>
-            </div>
-            <a [attr.href]="item.url" (click)="itemClick($event)" *ngIf="(!item.routerLink || item.items) && item.visible !== false"
-               (mouseenter)="onMouseEnter()" (keydown.enter)="itemClick($event)" [ngClass]="item.class" pRipple
-               [attr.target]="item.target" [attr.tabindex]="!visible ? '-1' : 0">
-                <i class="layout-menuitem-icon" [ngClass]="item.icon"></i>
-                <span class="layout-menuitem-text">{{item.label}}</span>
-                <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
-                <span class="menuitem-badge" *ngIf="item.badge">{{item.badge}}</span>
-            </a>
-            <a (click)="itemClick($event)" (mouseenter)="onMouseEnter()" *ngIf="(item.routerLink && !item.items) && item.visible !== false"
-               [routerLink]="item.routerLink" routerLinkActive="active-route" [ngClass]="item.class" pRipple
-               [routerLinkActiveOptions]="{exact: !item.preventExact}" [attr.target]="item.target" [attr.tabindex]="!visible ? '-1' : 0">
-                <i class="layout-menuitem-icon" [ngClass]="item.icon"></i>
-                <span class="layout-menuitem-text">{{item.label}}</span>
-                <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
-                <span class="menuitem-badge" *ngIf="item.badge">{{item.badge}}</span>
-            </a>
-            <div class="layout-menu-tooltip" *ngIf="item.visible !== false">
-                <div class="layout-menu-tooltip-arrow"></div>
-                <div class="layout-menu-tooltip-text">{{item.label}}</div>
-            </div>
-            <ul *ngIf="(item.items || (active || animating)) && item.visible !== false" (@children.done)="onAnimationDone()"
-                [@children]="(root ? 'visible' : active ? 'visibleAnimated' : 'hiddenAnimated')">
-                <ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
-                    <li app-menuitem *ngIf="child.visible!==false" [item]="child" [visible]="active"
-                        [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
-                </ng-template>
-            </ul>
-        </ng-container>
-    `,
-    host: {
-        '[class.active-menuitem]': 'active',
-        '[class.layout-root-menuitem]': 'root',
-    },
+  selector: '[app-menu-item]',
+  templateUrl: './menu-item.component.html',
+  styleUrls: ['./menu-item.component.scss'],
+  host: {
+    '[class.active-menuitem]': 'active',
+    '[class.layout-root-menuitem]': 'root',
+},
     animations: [
-        trigger('children', [
-            state('void', style({
-                height: '0px'
-            })),
-            state('hiddenAnimated', style({
-                height: '0px'
-            })),
-            state('visibleAnimated', style({
-                height: '*'
-            })),
-            state('visible', style({
-                height: '*',
-                'z-index': 100
-            })),
-            state('hidden', style({
-                height: '0px',
-                'z-index': '*'
-            })),
-            transition('visibleAnimated => hiddenAnimated', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')),
-            transition('hiddenAnimated => visibleAnimated', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')),
-            transition('void => visibleAnimated, visibleAnimated => void',
-                animate('400ms cubic-bezier(0.86, 0, 0.07, 1)'))
-        ])
+    trigger('children', [
+    state('void', style({
+        height: '0px'
+    })),
+    state('hiddenAnimated', style({
+        height: '0px'
+    })),
+    state('visibleAnimated', style({
+        height: '*'
+    })),
+    state('visible', style({
+        height: '*',
+        'z-index': 100
+    })),
+    state('hidden', style({
+        height: '0px',
+        'z-index': '*'
+    })),
+    transition('visibleAnimated => hiddenAnimated', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')),
+    transition('hiddenAnimated => visibleAnimated', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')),
+    transition('void => visibleAnimated, visibleAnimated => void',
+        animate('400ms cubic-bezier(0.86, 0, 0.07, 1)'))
+    ])
     ]
 })
-export class AppMenuitemComponent implements OnInit, OnDestroy {
+export class MenuItemComponent implements OnInit, OnDestroy{
 
     @Input() item: any;
 
