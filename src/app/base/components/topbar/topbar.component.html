@@ -30,7 +30,7 @@
     <li
       #profile
       class="user-profile"
-      *ngIf="app.profileMode === 'popup' || appMain.isHorizontal()"
+      *ngIf="appMain.profileMode === 'popup' || appMain.isHorizontal()"
       [ngClass]="{ 'active-topmenuitem': appMain.activeTopbarItem === profile }"
     >
       <a href="#" (click)="appMain.onTopbarItemClick($event, profile)">

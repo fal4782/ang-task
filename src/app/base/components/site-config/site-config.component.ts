@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
-import { AppMainComponent } from 'src/app/app.main.component';
 
 @Component({
   selector: 'app-site-config',
@@ -20,7 +19,7 @@ export class SiteConfigComponent {
 
   themeColor = 'blue';
 
-  constructor(public app: AppComponent, public appMain: AppMainComponent) {}
+  constructor(public appMain: AppComponent) {}
 
   createThemes(){
     this.componentThemes = [
