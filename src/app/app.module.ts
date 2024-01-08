@@ -91,15 +91,13 @@ import {VirtualScrollerModule} from 'primeng/virtualscroller';
 // Application Components
 import {AppComponent} from './app.component';
 import {AppMainComponent} from './app.main.component';
-import {AppProfileComponent} from './app.profile.component';
-import {AppConfigComponent} from './app.config.component';
 
 
 // Demo pages
 import {AppCodeModule} from './app.code.component';
 
 // Application services
-import { MenuService } from './app.menu.service';
+import { MenuService } from './base/services/menu.service';
 import { ContentModule } from './content/content.module';
 import { BaseModule } from './base/base.module';
 
@@ -196,11 +194,7 @@ import { BaseModule } from './base/base.module';
     ],
     declarations: [
         AppComponent,
-        AppMainComponent,
-        // AppMenuitemComponent,
-        AppProfileComponent,    
-        AppConfigComponent,
-        // AppBreadcrumbComponent,
+        AppMainComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
