@@ -1,3 +1,15 @@
 <ul class="layout-menu">
-  <li app-menu-item *ngFor="let item of model; let i = index" [item]="item" [index]="i" [visible]="true" [root]="true"></li>
-</ul>
+  <li
+    app-menu-item
+    *ngFor="let item of model; let i = index"
+    [item]="item"
+    [index]="i"
+    [visible]="true"
+    [root]="true"
+  >
+</li>
+<!-- <div style="color: white" *ngFor="let item of model">
+    ******** {{ item.items | json}}
+  </div>
+</ul> -->
+<!-- { "label": "Ticket Processing", "icon": "pi pi-fw pi-ticket", "items": [ { "label": "Issue eTicket", "icon": "pi pi-fw pi-briefcase" }, { "label": "Manual Ticket", "icon": "pi pi-fw pi-folder" }, { "label": "Draft Ticket", "icon": "pi pi-fw pi-question-circle" }, { "label": "Offender Profile", "icon": "pi pi-fw pi-user-minus" }, { "label": "Ticket Enquiry", "icon": "pi pi-fw pi-filter" }, { "label": "Cancel/Void Requests", "icon": "pi pi-fw pi-times" }, { "label": "Edit Requests", "icon": "pi pi-fw pi-pencil" } ] } -->
