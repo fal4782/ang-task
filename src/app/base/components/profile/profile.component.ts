@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AppMainComponent } from 'src/app/app.main.component';
 import {trigger, state, transition, style, animate} from '@angular/animations';
+import { AppComponent } from 'src/app/app.component';
 
 
 @Component({
@@ -33,7 +33,7 @@ import {trigger, state, transition, style, animate} from '@angular/animations';
 export class ProfileComponent {
     active: boolean;
 
-    constructor(public appMain: AppMainComponent) { }
+    constructor(public appMain: AppComponent) { }
 
     onClick(event) {
         this.appMain.onInlineMenuClick(event);

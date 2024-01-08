@@ -7,7 +7,6 @@ import {AppRoutingModule} from './app-routing.module';
 
 // Application Components
 import {AppComponent} from './app.component';
-import {AppMainComponent} from './app.main.component';
 
 
 // Application services
@@ -26,14 +25,10 @@ import { BaseModule } from './base/base.module';
     ],
     declarations: [
         AppComponent,
-        AppMainComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
-        // CountryService, CustomerService, EventService, IconService, NodeService,
-        // PhotoService, ProductService, 
-        MenuService, 
-        // BreadcrumbService
+        MenuService
     ],
     bootstrap: [AppComponent]
 })

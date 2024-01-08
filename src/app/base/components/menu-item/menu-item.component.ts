@@ -16,7 +16,7 @@ import {
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { MenuService } from '../../services/menu.service';
-import { AppMainComponent } from '../../../app.main.component';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: '[app-menu-item]',
@@ -96,7 +96,7 @@ export class MenuItemComponent implements OnInit, OnDestroy {
 
   key: string;
 
-  constructor( public appMain: AppMainComponent, public router: Router, private cd: ChangeDetectorRef, private menuService: MenuService ) {
+  constructor( public appMain: AppComponent, public router: Router, private cd: ChangeDetectorRef, private menuService: MenuService ) {
 
     this.menuSourceSubscription = this.menuService.menuSource$.subscribe(
       (key) => {
