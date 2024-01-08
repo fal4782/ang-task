@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MenuService} from './app.menu.service';
+import {MenuService} from '../app/base/services/menu.service'
 import {PrimeNGConfig} from 'primeng/api';
 import {AppComponent} from './app.component';
 

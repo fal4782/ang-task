@@ -15,7 +15,7 @@ import {
 } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { MenuService } from '../../../app.menu.service';
+import { MenuService } from '../../services/menu.service';
 import { AppMainComponent } from '../../../app.main.component';
 
 @Component({
