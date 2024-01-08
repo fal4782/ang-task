@@ -179,10 +179,10 @@ export class AppComponent implements OnInit{
     }
 
     isSlim() {
-        return this.layoutMode === 'slim';
+        return this.layoutMode === 'slim'
     }
 
     isStatic() {
-        return true
+       return this.layoutMode === 'static';
     }
 }
