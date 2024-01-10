@@ -96,12 +96,16 @@ export class MenuItemComponent implements OnInit, OnDestroy {
 
   key: string;
 
-  constructor( public appMain: AppComponent, public router: Router, private cd: ChangeDetectorRef, private menuService: MenuService ) {
-
+  constructor(
+    public appMain: AppComponent,
+    public router: Router,
+    private cd: ChangeDetectorRef,
+    private menuService: MenuService
+  ) {
     this.menuSourceSubscription = this.menuService.menuSource$.subscribe(
       (key) => {
         // console.log('key',key);
-        
+
         // deactivate current active menu
         if (this.active && this.key !== key && key.indexOf(this.key) !== 0) {
           this.active = false;
@@ -146,8 +150,6 @@ export class MenuItemComponent implements OnInit, OnDestroy {
   }
 
   itemClick(event: Event) {
-    // console.log(event);
-    
     // avoid processing disabled items
     if (this.item.disabled) {
       event.preventDefault(); //prevent navigation and exits early
@@ -156,15 +158,15 @@ export class MenuItemComponent implements OnInit, OnDestroy {
 
     // navigate with hover in horizontal mode
     if (this.root) {
-        this.appMain.menuHoverActive = !this.appMain.menuHoverActive;
+      this.appMain.menuHoverActive = !this.appMain.menuHoverActive;
     }
 
-    // notify other items 
+    // notify other items
     this.menuService.onMenuStateChange(this.key); //pass key associated with current item
 
     // execute command
     if (this.item.command) {
-        // console.log("command:", this.item.command); 
+      // console.log("command:", this.item.command);
       this.item.command({ originalEvent: event, item: this.item });
     }
 
