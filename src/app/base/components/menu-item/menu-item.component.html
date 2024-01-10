@@ -1,23 +1,16 @@
 <ng-container>
-  <!-- <div>
-      <span style="color: white">{{ item | json }}</span>
-    </div> -->
-
   <a
-    [attr.href]="item.url"
     (click)="itemClick($event)"
-    *ngIf="(!item.routerLink || item.items) && item.visible !== false"
     (mouseenter)="onMouseEnter()"
     (keydown.enter)="itemClick($event)"
     pRipple
     [attr.target]="item.target"
     [attr.tabindex]="!visible ? '-1' : 0"
+    [routerLink]="item.routerLink"
   >
-    <!-- <div>
-      <span style="color: white">{{ item | json }}</span>
-    </div> -->
-
+    <!-- icon -->
     <i class="layout-menuitem-icon" [ngClass]="item.icon"></i>
+    <!-- label -->
     <span class="layout-menuitem-text">{{ item.label }}</span>
     <i
       class="pi pi-fw pi-angle-down layout-submenu-toggler"
@@ -26,6 +19,7 @@
     <span class="menuitem-badge" *ngIf="item.badge">{{ item.badge }}</span>
   </a>
 
+  <!-- tooltip -->
   <div class="layout-menu-tooltip" *ngIf="item.visible !== false">
     <div class="layout-menu-tooltip-arrow"></div>
     <div class="layout-menu-tooltip-text">{{ item.label }}</div>
@@ -38,6 +32,7 @@
       root ? 'visible' : active ? 'visibleAnimated' : 'hiddenAnimated'
     "
   >
+    <!-- Recursive rendering of child menu itemss -->
     <ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
       <li
         app-menu-item

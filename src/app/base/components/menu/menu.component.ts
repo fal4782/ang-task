@@ -17,7 +17,7 @@ export class MenuComponent {
     this.prerequiste();
   }
 
-  private sortItemsAlphabetically(items: any[]): any[] {
+  sortItemsAlphabetically(items: any[]): any[] {
     return items.map((item) => {
       if (item.items) {
         item.items = this.sortItemsAlphabetically(item.items);
@@ -28,6 +28,7 @@ export class MenuComponent {
 
   createMenu() {
     this.model = MENU_LIST
+
     this.model.forEach((category) => {
         if (category.items) {
           category.items = this.sortItemsAlphabetically(category.items);

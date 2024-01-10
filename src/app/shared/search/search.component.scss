@@ -1,0 +1,16 @@
+::ng-deep .p-dialog-header {
+  display: none !important;
+}
+
+::ng-deep .p-dialog-content {
+  padding-top: 28px !important;
+}
+
+::ng-deep .p-dialog .p-dialog-content:last-of-type {
+  border-radius: 6px !important;
+}
+
+::ng-deep .p-autocomplete:first-child,
+::ng-deep .p-inputtext {
+  width: 100%;
+}
