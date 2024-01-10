@@ -49,7 +49,7 @@ export class SearchComponent {
     }
   }
 
-  private setupGlobalKeyEvent() {
+  setupGlobalKeyEvent() {
     window.addEventListener('keydown', (event) => {
       if (event.ctrlKey && event.key === 'k') {
         event.preventDefault();
@@ -75,12 +75,10 @@ export class SearchComponent {
 
   getSelectedMenuItem(event: any) {
     this.selectedmenuItem = event;
-    console.log(this.selectedmenuItem);
 
     if (this.selectedmenuItem.routerLink) {
-      console.log(this.selectedmenuItem.routerLink);
       this.router.navigate(this.selectedmenuItem.routerLink);
-      this.isSearchOpen = false;
+      this.isSearchOpen = false; //close the search dialog
     }
   }
 
