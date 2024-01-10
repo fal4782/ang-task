@@ -1,6 +1,7 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { CommonService } from '../services/common.service';
 import { Router } from '@angular/router';
+import { AutoComplete } from 'primeng/autocomplete';
 
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
@@ -27,18 +28,26 @@ export class SearchComponent {
   selectedmenuItem: any;
   value: any;
   filteredmenuItems: any[] | undefined;
+  @ViewChild('searchInput') searchInput: AutoComplete;
 
   ngOnInit() {
     this.prerequisite();
   }
 
+  constructor(
+    private commonService: CommonService,
+    private router: Router,
+    private renderer: Renderer2
+  ) {}
+
   showDialog() {
     if (this.searchDialogBox) {
       this.isSearchOpen = true;
+      setTimeout(() => {
+        this.searchInput.focusInput();
+      }, 0);
     }
   }
-
-  constructor(private commonService: CommonService, private router: Router) {}
 
   private setupGlobalKeyEvent() {
     window.addEventListener('keydown', (event) => {
@@ -75,7 +84,8 @@ export class SearchComponent {
     }
   }
 
-  onSearchRender() { //not working
+  onSearchRender() {
+    //not working
     this.value = ''; // need to clear autocomplete input when dialog closes
   }
 }

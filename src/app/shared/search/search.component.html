@@ -7,7 +7,7 @@
   [resizable]="false"
   [(ngModel)]="value"
 >
-  <p-autoComplete
+  <p-autoComplete #searchInput
     appendTo="body"
     [suggestions]="filteredmenuItems"
     (completeMethod)="filtermenuItem($event)"

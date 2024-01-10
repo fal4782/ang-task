@@ -2,18 +2,14 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { IssueEticketComponent } from './content/issue-eticket/issue-eticket.component';
+import { AddSuspensionReversalComponent } from './content/add-suspension-reversal/add-suspension-reversal.component';
 
 @NgModule({
   imports: [
     RouterModule.forRoot(
       [
         { path: 'ticket/issue', component: IssueEticketComponent },
-        // {path: 'error', component: AppErrorComponent},
-        // {path: 'access', component: AppAccessdeniedComponent},
-        // {path: 'notfound', component: AppNotfoundComponent},
-        // {path: 'login', component: AppLoginComponent},
-        // {path: 'wizard', component: AppWizardComponent},
-        // { path: '**', redirectTo: '/notfound' },
+        { path: 'suspension/reissue-to-taj/add-suspension-reversal',component: AddSuspensionReversalComponent}
       ],
       { scrollPositionRestoration: 'enabled' }
     ),
