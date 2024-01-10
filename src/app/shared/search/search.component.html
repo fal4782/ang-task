@@ -1,0 +1,19 @@
+<p-dialog
+  #searchDialogBox
+  [(visible)]="isSearchOpen"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  [(ngModel)]="value"
+>
+  <p-autoComplete
+    appendTo="body"
+    [suggestions]="filteredmenuItems"
+    (completeMethod)="filtermenuItem($event)"
+    (onSelect)="getSelectedMenuItem($event)"
+    (onHide)="onSearchRender()"
+    field="label"
+    placeholder="Search"
+  ></p-autoComplete>
+</p-dialog>

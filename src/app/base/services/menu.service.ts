@@ -10,12 +10,12 @@ export class MenuService {
     menuSource$ = this.menuSource.asObservable();
     resetSource$ = this.resetSource.asObservable();
 
-    onMenuStateChange(key: string) {
-        this.menuSource.next(key);
-    }
+    onMenuStateChange(key: string) { //notify subscribers(menu items) about 
+        this.menuSource.next(key);   // changes in menu state by emitting                                      // corresponding key
+    }                                // corresponding key
 
     reset() {
-        this.resetSource.next(true);
-    }
+        this.resetSource.next(true); //trigger reset event
+    }   
     
 }

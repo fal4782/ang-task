@@ -8,10 +8,19 @@ import { DialogModule } from 'primeng/dialog';
 import { ChartModule } from 'primeng/chart';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
+import { AddSuspensionReversalComponent } from './add-suspension-reversal/add-suspension-reversal.component';
+import {RouterModule, Routes} from '@angular/router';
+import { IssueEticketComponent } from './issue-eticket/issue-eticket.component';
+
+const contentRoutes: Routes = [
+    {path:'ticket/issue',component:IssueEticketComponent}
+  ];
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    AddSuspensionReversalComponent,
+    IssueEticketComponent
   ],
   imports: [
     CommonModule,
@@ -22,9 +31,13 @@ import { ToastModule } from 'primeng/toast';
     ChartModule,
     FileUploadModule,
     ToastModule,
+    RouterModule.forChild(contentRoutes)
   ],
   exports:[
-    HomeComponent
+    HomeComponent,
+    AddSuspensionReversalComponent,
+    IssueEticketComponent,
+    RouterModule
   ]
 })
 export class ContentModule { }

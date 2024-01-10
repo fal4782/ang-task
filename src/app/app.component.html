@@ -1,4 +1,4 @@
-<!-- <router-outlet></router-outlet>-->
+<!-- <router-outlet></router-outlet> -->
 
 <div
   class="layout-wrapper"
@@ -20,8 +20,8 @@
   <app-topbar></app-topbar>
 
   <div class="layout-menu-container" (click)="onMenuClick($event)">
-    <div class="layout-menu-logo">
-      <a href="#">
+    <div class="layout-menu-logo" routerLink="/">
+      <a>
         <img
           id="layout-menu-logo"
           src="assets/layout/images/logo-white.png"
@@ -41,7 +41,8 @@
 
   <div class="layout-main">
     <div class="layout-content">
-      <app-home></app-home>
+        <app-search></app-search>
+      <router-outlet></router-outlet>
     </div>
 
     <app-footer></app-footer>
