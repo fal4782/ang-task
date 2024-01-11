@@ -29,6 +29,7 @@ export class SearchComponent {
   value: any;
   filteredmenuItems: any[] | undefined;
   @ViewChild('searchInput') searchInput: AutoComplete;
+  
 
   ngOnInit() {
     this.prerequisite();
@@ -77,13 +78,16 @@ export class SearchComponent {
     this.selectedmenuItem = event;
 
     if (this.selectedmenuItem.routerLink) {
+      this.commonService.keepMenuOpenAfterNavigation.emit(
+        this.selectedmenuItem
+      );
       this.router.navigate(this.selectedmenuItem.routerLink);
+      console.log('emitted');
       this.isSearchOpen = false; //close the search dialog
     }
   }
 
   onSearchRender() {
-    //not working
-    this.value = ''; // need to clear autocomplete input when dialog closes
+    this.value = '';
   }
 }
