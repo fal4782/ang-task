@@ -83,7 +83,7 @@ export const MENU_LIST = [
                 label: 'Reversal of Suspension - Add',
                 icon: 'pi pi-fw pi-replay',
                 routerLink: [
-                  '/suspension/reissue-to-taj/add-suspension-reversal',
+                  '/suspension/reissue-notice-to-taj/reveral-of-suspension-add',
                 ],
               },
             ],
@@ -131,7 +131,6 @@ export const MENU_LIST = [
           { label: 'Court Proceedings', icon: 'pi pi-fw pi-eye' },
           { label: 'Disqualifications', icon: 'pi pi-fw pi-eye' },
           { label: 'Payments', icon: 'pi pi-fw pi-server' },
-          { label: 'Ticket Processing', icon: 'pi pi-fw pi-server' },
           { label: 'Warrants', icon: 'pi pi-fw pi-eye' },
         ],
       },
@@ -212,7 +211,7 @@ export const SEARCH_MENU_LIST = [
     parentMenuItem: 'Suspension',
   },
   {
-    label: 'Reissue Notice to TAJ',
+    label: 'Reissue Notice To TAJ',
     parentMenuItem: 'Suspension',
   },
   {
@@ -221,7 +220,7 @@ export const SEARCH_MENU_LIST = [
   },
   {
     label: 'Reversal of Suspension - Add',
-    routerLink: ['/suspension/reissue-to-taj/add-suspension-reversal'],
+    routerLink: ['/suspension/reissue-notice-to-taj/reveral-of-suspension-add'],
     parentMenuItem: 'Reissue Notice to TAJ',
   },
   {
@@ -250,7 +249,6 @@ export const SEARCH_MENU_LIST = [
   { label: 'Court Proceedings', parentMenuItem: 'Reports' },
   { label: 'Disqualifications', parentMenuItem: 'Reports' },
   { label: 'Payments', parentMenuItem: 'Reports' },
-  { label: 'Ticket Processing', parentMenuItem: 'Reports' },
   { label: 'Warrants', parentMenuItem: 'Reports' },
   {
     label: 'Utilities',

@@ -5,7 +5,6 @@
   [style]="{ width: '50vw' }"
   [draggable]="false"
   [resizable]="false"
-  [(ngModel)]="value"
 >
   <p-autoComplete #searchInput
     appendTo="body"
@@ -15,5 +14,7 @@
     (onHide)="onSearchRender()"
     field="label"
     placeholder="Search"
+    [(ngModel)]="value"
   ></p-autoComplete>
 </p-dialog>
+

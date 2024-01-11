@@ -11,6 +11,7 @@ import { ToastModule } from 'primeng/toast';
 import { AddSuspensionReversalComponent } from './add-suspension-reversal/add-suspension-reversal.component';
 import {RouterModule, Routes} from '@angular/router';
 import { IssueEticketComponent } from './issue-eticket/issue-eticket.component';
+import { FormsModule } from '@angular/forms';
 
 const contentRoutes: Routes = [
     {path:'ticket/issue',component:IssueEticketComponent}
@@ -31,6 +32,7 @@ const contentRoutes: Routes = [
     ChartModule,
     FileUploadModule,
     ToastModule,
+    FormsModule,
     RouterModule.forChild(contentRoutes)
   ],
   exports:[

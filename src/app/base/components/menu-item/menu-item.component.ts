@@ -17,6 +17,7 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { MenuService } from '../../services/menu.service';
 import { AppComponent } from 'src/app/app.component';
+import { CommonService } from 'src/app/shared/services/common.service';
 
 @Component({
   selector: '[app-menu-item]',
@@ -90,17 +91,22 @@ export class MenuItemComponent implements OnInit, OnDestroy {
 
   active = false;
 
+  item1 = {};
+
   menuSourceSubscription: Subscription;
 
   menuResetSubscription: Subscription;
 
   key: string;
 
+  stayOpenAfterNavigation: boolean = false;
+
   constructor(
     public appMain: AppComponent,
     public router: Router,
     private cd: ChangeDetectorRef,
-    private menuService: MenuService
+    private menuService: MenuService,
+    private common: CommonService
   ) {
     this.menuSourceSubscription = this.menuService.menuSource$.subscribe(
       (key) => {
@@ -129,6 +135,14 @@ export class MenuItemComponent implements OnInit, OnDestroy {
             this.active = false;
           }
         }
+
+        if (this.stayOpenAfterNavigation) {
+          this.active = true;
+          this.animating = false;
+          common.menuStayOpenAfterNavigation = false;
+
+          this.stayOpenAfterNavigation = false;
+        }
       });
   }
 
@@ -140,18 +154,113 @@ export class MenuItemComponent implements OnInit, OnDestroy {
     this.key = this.parentKey
       ? this.parentKey + '-' + this.index
       : String(this.index);
+
+    this.common.keepMenuOpenAfterNavigation.subscribe((menuItem) => {
+      this.openMenu(menuItem);
+    });
+  }
+
+  openMenu(menuItem) {
+    let filtered;
+
+    // let il = this.item.label;
+    // console.log('top level', this.item);
+
+    if (this.item.items) {
+      const arr = Object.keys(this.item.items).map((item) => {
+        if (this.item.items[item].label === menuItem.parentMenuItem) {
+          if (this.item.items[item].label === menuItem.parentMenuItem)
+            // console.log('**********', this.item);
+
+            filtered = this.item;
+        }
+      });
+      if (filtered) this.recursive(filtered, menuItem.parentMenuItem);
+    }
+
+    // if (filtered && filtered.items)
+    //   filtered.items.map((item) => console.log('filteredITem', item));
+    // if (menuItem.parentMenuItem === this.item.label) {
+    //   console.log('menuitem', menuItem.parentMenuItem, menuItem);
+    //   console.log('item', this.item.label);
+    //   const route = menuItem.routerLink[0];
+    //   const routeParts = route.replace(/^\//, '').split('/');
+    //   const transformedRouteParts = routeParts.map((part) =>
+    //     part.replace(/-/g, ' ')
+    //   );
+    //   const checkMenuItem = menuItem.parentMenuItem
+    //     .toLowerCase()
+    //     .replace(/-/g, ' ');
+    //   //   if (transformedRouteParts.length > 2) {
+    //   for (let i = 0; i < transformedRouteParts.length; i++) {
+    //     console.log('part', transformedRouteParts[i]);
+    //     if (transformedRouteParts[i] === checkMenuItem) {
+    //       console.log(
+    //         'transformedRoutePart',
+    //         transformedRouteParts[i],
+    //         transformedRouteParts[i - 1]
+    //       );
+    //       il = transformedRouteParts[i - 1];
+    //       // break;
+    //       // this.itemClick();
+    //     }
+    //   }
+    //   //   }
+    //   this.itemClick();
+    // }
+  }
+
+  recursive(item, label) {
+    // console.log('itemmmmm',item);
+    // this.item = item;
+
+    console.log('this.item', this.item);
+    console.log('item', item);
+
+    console.log('label inside recursion', label);
+
+    this.itemClick(item);
+
+    if (item.items) {
+      console.log('item.items inside recursion', item.items);
+
+      let fitem = item.items.filter((i: any) => {
+        return i.label === label ? true : false;
+      });
+
+      if (fitem.length > 0) {
+        console.log('fitem', fitem[0]);
+
+        this.recursive(fitem[0], fitem[0].label);
+      }
+    } else {
+      console.log('item not present');
+    }
   }
 
   updateActiveStateFromRoute() {
+    console.log('Checking active state for', this.item.label);
+    console.log('RouterLink:', this.item.routerLink[0]);
+    console.log(
+      'Is Active:',
+      this.router.isActive(
+        this.item.routerLink[0],
+        !this.item.items && !this.item.preventExact
+      )
+    );
+
     this.active = this.router.isActive(
       this.item.routerLink[0],
       !this.item.items && !this.item.preventExact
     );
   }
 
-  itemClick(event: Event) {
-    // avoid processing disabled items
-    if (this.item.disabled) {
+  itemClick(item?: any) {
+    let item1;
+    item1 = item ? item : this.item;
+    console.log('itemClick called for', item1.label);
+
+    if (item1.disabled) {
       event.preventDefault(); //prevent navigation and exits early
       return;
     }
@@ -165,15 +274,30 @@ export class MenuItemComponent implements OnInit, OnDestroy {
     this.menuService.onMenuStateChange(this.key); //pass key associated with current item
 
     // execute command
-    if (this.item.command) {
-      // console.log("command:", this.item.command);
-      this.item.command({ originalEvent: event, item: this.item });
+    console.log('command', item1.command);
+
+    if (item1.command) {
+      // console.log("command:", item1.command);
+      item1.command({ originalEvent: event, item: item1 });
     }
 
     // toggle active state with submenus
-    if (this.item.items) {
+    if (item1.items) {
+      console.log('Submenu detected for', item1.label);
+
       this.active = !this.active;
+      //   this.active = true;
       this.animating = true;
+      this.common.menuStayOpenAfterNavigation = true;
+
+      this.stayOpenAfterNavigation = true;
+
+      console.log(
+        this.active,
+        this.animating,
+        this.common.menuStayOpenAfterNavigation,
+        this.stayOpenAfterNavigation
+      );
     } else {
       // activate item without submenus
       this.active = true;

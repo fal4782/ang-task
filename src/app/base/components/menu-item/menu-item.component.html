@@ -1,17 +1,21 @@
 <ng-container>
   <a
-    (click)="itemClick($event)"
+    (click)="itemClick()"
     (mouseenter)="onMouseEnter()"
-    (keydown.enter)="itemClick($event)"
     pRipple
     [attr.target]="item.target"
     [attr.tabindex]="!visible ? '-1' : 0"
     [routerLink]="item.routerLink"
+    [class.active-menu]="active"
   >
     <!-- icon -->
     <i class="layout-menuitem-icon" [ngClass]="item.icon"></i>
     <!-- label -->
-    <span class="layout-menuitem-text">{{ item.label }}</span>
+    <span class="layout-menuitem-text" 
+    
+    >
+      {{ item.label }}</span
+    >
     <i
       class="pi pi-fw pi-angle-down layout-submenu-toggler"
       *ngIf="item.items"
@@ -26,7 +30,10 @@
   </div>
 
   <ul
-    *ngIf="(item.items || active || animating) && item.visible !== false"
+    *ngIf="
+      (item.items || active || animating || stayOpenAfterNavigation) &&
+      item.visible !== false
+    "
     (@children.done)="onAnimationDone()"
     [@children]="
       root ? 'visible' : active ? 'visibleAnimated' : 'hiddenAnimated'

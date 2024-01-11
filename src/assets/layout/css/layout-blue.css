@@ -835,6 +835,9 @@ a {
 .layout-wrapper.layout-menu-dark .layout-menu-container .layout-menu li a:hover {
   background-color: #373737;
 }
+.layout-wrapper.layout-menu-dark .layout-menu-container .layout-menu li a:active {
+    background-color: #373737;
+  }
 .layout-wrapper.layout-menu-dark .layout-menu-container .layout-menu li a.active-route .layout-menuitem-text, .layout-wrapper.layout-menu-dark .layout-menu-container .layout-menu li a.active-route .layout-menuitem-icon {
   color: #2196F3;
 }
