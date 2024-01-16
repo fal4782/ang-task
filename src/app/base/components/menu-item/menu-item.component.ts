@@ -98,18 +98,14 @@ export class MenuItemComponent implements OnInit, OnDestroy {
 
   key: string;
 
-  stayOpenAfterNavigation: boolean = false;
-
   constructor(
     public appMain: AppComponent,
     public router: Router,
     private cd: ChangeDetectorRef,
-    private menuService: MenuService,
+    private menuService: MenuService
   ) {
     this.menuSourceSubscription = this.menuService.menuSource$.subscribe(
       (key) => {
-        // console.log('key',key);
-
         // deactivate current active menu
         if (this.active && this.key !== key && key.indexOf(this.key) !== 0) {
           this.active = false;
@@ -133,11 +129,6 @@ export class MenuItemComponent implements OnInit, OnDestroy {
             this.active = false;
           }
         }
-        if (this.stayOpenAfterNavigation) {
-          this.active = true;
-          this.animating = false;
-          this.stayOpenAfterNavigation = false;
-        }
       });
   }
 
@@ -151,11 +142,7 @@ export class MenuItemComponent implements OnInit, OnDestroy {
       : String(this.index);
   }
 
- 
-
   updateActiveStateFromRoute() {
-   
-
     this.active = this.router.isActive(
       this.item.routerLink[0],
       !this.item.items && !this.item.preventExact
@@ -186,7 +173,6 @@ export class MenuItemComponent implements OnInit, OnDestroy {
     if (this.item.items) {
       this.active = !this.active;
       this.animating = true;
-      this.stayOpenAfterNavigation = true
     } else {
       // activate item
       this.active = true;
