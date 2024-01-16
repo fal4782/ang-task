@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { CommonService } from '../services/common.service';
 import { Router } from '@angular/router';
 import { AutoComplete } from 'primeng/autocomplete';
+import { SEARCH_MENU_LIST } from 'src/app/app.config';
 
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
@@ -16,15 +17,11 @@ interface AutoCompleteCompleteEvent {
 export class SearchComponent {
   prerequisite() {
     this.setupGlobalKeyEvent();
-
-    this.commonService.getMenu().then((menu) => {
-      this.menuItems = menu[0];
-    });
   }
 
   @ViewChild('searchDialogBox') searchDialogBox: ElementRef | undefined;
   isSearchOpen: boolean = false;
-  menuItems: any[] | undefined;
+  menuItems= SEARCH_MENU_LIST
   selectedmenuItem: any;
   value: any;
   filteredmenuItems: any[] | undefined;
@@ -38,7 +35,7 @@ export class SearchComponent {
   constructor(
     private commonService: CommonService,
     private router: Router,
-    private renderer: Renderer2
+    // private renderer: Renderer2
   ) {}
 
   showDialog() {

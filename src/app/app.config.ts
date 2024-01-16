@@ -6,6 +6,7 @@ export const MENU_LIST = [
       {
         label: 'Ticket Processing', //for static menu
         icon: 'pi pi-fw pi-ticket',
+        routerLink: ['/ticket'],
 
         items: [
           {
@@ -57,6 +58,7 @@ export const MENU_LIST = [
       {
         label: 'Suspension', //for static menu
         icon: 'pi pi-fw pi-ban',
+        routerLink: ['/suspension'],
         items: [
           { label: 'Suspend by Points', icon: 'pi pi-fw pi-eye' },
           {
@@ -74,6 +76,7 @@ export const MENU_LIST = [
           {
             label: 'Reissue Notice to TAJ',
             icon: 'pi pi-fw pi-file-export',
+            routerLink: ['/suspension/reissue-notice-to-taj'],
             items: [
               {
                 label: "Removal of Endorsement on Driver's License",
