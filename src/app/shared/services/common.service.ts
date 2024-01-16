@@ -3,8 +3,5 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
   providedIn: 'root',
 })
 export class CommonService {
-    
-  @Output() keepMenuOpenAfterNavigation: EventEmitter<any> = new EventEmitter();
-
-  constructor() {}
+    constructor(){ }
 }
