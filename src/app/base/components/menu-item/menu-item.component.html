@@ -44,7 +44,7 @@
   </div>
   <ul
     *ngIf="
-      (item.items || active || animating || stayOpenAfterNavigation) &&
+      (item.items || active || animating ) &&
       item.visible !== false
     "
     (@children.done)="onAnimationDone()"
