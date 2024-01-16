@@ -75,9 +75,6 @@ export class SearchComponent {
     this.selectedmenuItem = event;
 
     if (this.selectedmenuItem.routerLink) {
-      this.commonService.keepMenuOpenAfterNavigation.emit(
-        this.selectedmenuItem
-      );
       this.router.navigate(this.selectedmenuItem.routerLink);
       console.log('emitted');
       this.isSearchOpen = false; //close the search dialog
