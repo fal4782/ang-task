@@ -12,12 +12,14 @@ import { AddSuspensionReversalComponent } from './add-suspension-reversal/add-su
 import {RouterModule, Routes} from '@angular/router';
 import { IssueEticketComponent } from './issue-eticket/issue-eticket.component';
 import { FormsModule } from '@angular/forms';
+import { WarrantProcessingComponent } from './warrant-processing/warrant-processing.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     AddSuspensionReversalComponent,
-    IssueEticketComponent
+    IssueEticketComponent,
+    WarrantProcessingComponent
   ],
   imports: [
     CommonModule,
@@ -34,6 +36,7 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     AddSuspensionReversalComponent,
     IssueEticketComponent,
+    WarrantProcessingComponent
   ]
 })
 export class ContentModule { }

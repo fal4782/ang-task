@@ -31,8 +31,9 @@ export const MENU_LIST = [
       {
         label: 'Court Processing', //for static menu
         icon: 'pi pi-fw pi-briefcase',
+        routerLink:['/court-processing'],
         items: [
-          { label: 'Warrant Processing', icon: 'pi pi-fw pi-mobile' },
+          { label: 'Warrant Processing', icon: 'pi pi-fw pi-mobile', routerLink:['/court-processing/warrant-processing'] },
           { label: 'Prepare Court Sheet', icon: 'pi pi-fw pi-file' },
           {
             label: 'Assign New Court Date enbloc',
@@ -191,7 +192,7 @@ export const SEARCH_MENU_LIST = [
     label: 'Edit Requests',
     parentMenuItem: 'Ticket Processing',
   },
-  { label: 'Warrant Processing', parentMenuItem: 'Court Processing' },
+  { label: 'Warrant Processing', parentMenuItem: 'Court Processing', routerLink:['/court-processing/warrant-processing'] },
   { label: 'Prepare Court Sheet', parentMenuItem: 'Court Processing' },
   { label: 'Assign New Court Date enbloc', parentMenuItem: 'Court Processing' },
   { label: 'Print Court Sheet', parentMenuItem: 'Court Processing' },
