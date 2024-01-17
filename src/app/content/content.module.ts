@@ -13,10 +13,6 @@ import {RouterModule, Routes} from '@angular/router';
 import { IssueEticketComponent } from './issue-eticket/issue-eticket.component';
 import { FormsModule } from '@angular/forms';
 
-const contentRoutes: Routes = [
-    {path:'ticket/issue',component:IssueEticketComponent}
-  ];
-
 @NgModule({
   declarations: [
     HomeComponent,
@@ -33,13 +29,11 @@ const contentRoutes: Routes = [
     FileUploadModule,
     ToastModule,
     FormsModule,
-    RouterModule.forChild(contentRoutes)
   ],
   exports:[
     HomeComponent,
     AddSuspensionReversalComponent,
     IssueEticketComponent,
-    RouterModule
   ]
 })
 export class ContentModule { }
