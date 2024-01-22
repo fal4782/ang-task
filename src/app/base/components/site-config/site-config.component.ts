@@ -8,45 +8,61 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class SiteConfigComponent {
   prerequisite() {
-    this.createThemes()
+    this.createThemes();
+    this.siteTheme={theme: 'blue', color: '#2196F3'}
+    localStorage.setItem('siteTheme', JSON.stringify(this.siteTheme));
+    // console.log("ng theme",this.siteTheme);
+    
   }
 
   ngOnInit() {
-    this.prerequisite()
+    this.prerequisite();
   }
 
   componentThemes: any;
 
   themeColor = 'blue';
+  siteTheme:any
 
   constructor(public appMain: AppComponent) {}
 
-  createThemes(){
+  createThemes() {
     this.componentThemes = [
-        { name: 'Amber Accent', file: 'amber', color: '#FFC107' },
-        { name: 'Blue Accent', file: 'blue', color: '#2196F3' },
-        { name: 'Blue Gray Accent', file: 'bluegray', color: '#607D8B' },
-        { name: 'Brown Accent', file: 'brown', color: '#795548' },
-        { name: 'Cyan Accent', file: 'cyan', color: '#00BCD4' },
-        { name: 'Deep Orange Accent', file: 'deeporange', color: '#FF5722' },
-        { name: 'Deep Purple Accent', file: 'deeppurple', color: '#673AB7' },
-        { name: 'Green Accent', file: 'green', color: '#4CAF50' },
-        { name: 'Indigo Accent', file: 'indigo', color: '#3F51B5' },
-        { name: 'Light Blue Accent', file: 'lightblue', color: '#03A9F4' },
-        { name: 'Light Green Accent', file: 'lightgreen', color: '#8BC34A' },
-        { name: 'Lime Accent', file: 'lime', color: '#CDDC39' },
-        { name: 'Orange Accent', file: 'orange', color: '#FF9800' },
-        { name: 'Pink Accent', file: 'pink', color: '#E91E63' },
-        { name: 'Purple Accent', file: 'purple', color: '#9C27B0' },
-        { name: 'Teal Accent', file: 'teal', color: '#00796B' },
-        { name: 'Yellow Accent', file: 'yellow', color: '#FFEB3B' },
-      ];
+      { name: 'Amber Accent', file: 'amber', color: '#FFC107' },
+      { name: 'Blue Accent', file: 'blue', color: '#2196F3' },
+      { name: 'Blue Gray Accent', file: 'bluegray', color: '#607D8B' },
+      { name: 'Brown Accent', file: 'brown', color: '#795548' },
+      { name: 'Cyan Accent', file: 'cyan', color: '#00BCD4' },
+      { name: 'Deep Orange Accent', file: 'deeporange', color: '#FF5722' },
+      { name: 'Deep Purple Accent', file: 'deeppurple', color: '#673AB7' },
+      { name: 'Green Accent', file: 'green', color: '#4CAF50' },
+      { name: 'Indigo Accent', file: 'indigo', color: '#3F51B5' },
+      { name: 'Light Blue Accent', file: 'lightblue', color: '#03A9F4' },
+      { name: 'Light Green Accent', file: 'lightgreen', color: '#8BC34A' },
+      { name: 'Lime Accent', file: 'lime', color: '#CDDC39' },
+      { name: 'Orange Accent', file: 'orange', color: '#FF9800' },
+      { name: 'Pink Accent', file: 'pink', color: '#E91E63' },
+      { name: 'Purple Accent', file: 'purple', color: '#9C27B0' },
+      { name: 'Teal Accent', file: 'teal', color: '#00796B' },
+      { name: 'Yellow Accent', file: 'yellow', color: '#FFEB3B' },
+    ];
   }
 
-  changeTheme(theme: string) {
+  changeTheme(theme: string, color:string) {
     this.changeStyleSheetsColor('theme-css', theme, 'theme-');
     this.changeStyleSheetsColor('layout-css', theme, 'layout-');
-    this.themeColor = theme;
+    this.themeColor = theme
+
+    this.siteTheme = {
+        theme: theme,
+        color: color
+    }
+    console.log(this.siteTheme);
+    
+
+    localStorage.setItem('siteTheme', JSON.stringify(this.siteTheme));
+    
+    
 
     const topbarLogo: HTMLImageElement = document.getElementById(
       'layout-topbar-logo'

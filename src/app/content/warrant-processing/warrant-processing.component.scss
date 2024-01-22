@@ -1,0 +1,85 @@
+section {
+  margin-bottom: 40px;
+
+  .row {
+    display: flex;
+    margin-bottom: 30px;
+    gap: 10px;
+
+    &:nth-last-child(3),
+    &:nth-last-child(2) {
+      margin-bottom: 10px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+      justify-content: end;
+    }
+
+    .input {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      flex: 1;
+      margin-right: 10px;
+
+      label {
+        font-size: 16px;
+      }
+
+      ::ng-deep .p-inputnumber,
+      ::ng-deep .p-dropdown {
+        width: 100%;
+      }
+
+      ::ng-deep .p-inputtext:enabled:hover,
+      ::ng-deep .p-inputtext:enabled:focus {
+        border-color: var(--primary-bg-color);
+      }
+
+      ::ng-deep .p-inputtext:enabled:focus {
+        box-shadow: 0 0 5px var(--primary-bg-color);
+      }
+
+      .date-wrapper,
+      .wrapper {
+        display: flex;
+        gap: 10px;
+
+        ::ng-deep p-calendar {
+          width: 100%;
+
+          span {
+            width: 100%;
+            .p-button-icon-only {
+              border-color: var(--primary-bg-color) !important;
+              background-color: var(--primary-bg-color) !important;
+              color: var(--primary-text-color) !important;
+            }
+          }
+        }
+
+        ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight {
+          background-color: var(--primary-bg-color);
+          border: var(--primary-bg-color);
+        }
+      }
+    }
+
+    ::ng-deep .p-chip {
+      background-color: var(--primary-bg-color);
+      color: var(--primary-text-color);
+    }
+
+    ::ng-deep .p-button {
+      background-color: var(--primary-bg-color);
+      color: var(--primary-text-color);
+      border: 0;
+    }
+  }
+
+  #no-records {
+    width: 100%;
+    margin-left: 100px;
+  }
+}

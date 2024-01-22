@@ -9,10 +9,19 @@ import { ChartModule } from 'primeng/chart';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { AddSuspensionReversalComponent } from './add-suspension-reversal/add-suspension-reversal.component';
-import {RouterModule, Routes} from '@angular/router';
 import { IssueEticketComponent } from './issue-eticket/issue-eticket.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WarrantProcessingComponent } from './warrant-processing/warrant-processing.component';
+import { FieldsetModule } from 'primeng/fieldset';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { CalendarModule } from 'primeng/calendar';
+import { DropdownModule } from 'primeng/dropdown';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { ChipModule } from 'primeng/chip';
+import { TableModule } from 'primeng/table';
+
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,6 +40,16 @@ import { WarrantProcessingComponent } from './warrant-processing/warrant-process
     FileUploadModule,
     ToastModule,
     FormsModule,
+    ReactiveFormsModule,
+    FieldsetModule,
+    InputTextModule,
+    InputNumberModule,
+    CalendarModule,
+    DropdownModule,
+    RadioButtonModule,
+    ChipModule,
+    TableModule,
+    HttpClientModule
   ],
   exports:[
     HomeComponent,
