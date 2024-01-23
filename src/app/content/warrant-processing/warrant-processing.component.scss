@@ -33,11 +33,14 @@ section {
       }
 
       ::ng-deep .p-inputtext:enabled:hover,
-      ::ng-deep .p-inputtext:enabled:focus {
+      ::ng-deep .p-inputtext:enabled:focus,
+      ::ng-deep .p-dropdown:first-child:hover,
+      ::ng-deep p-radiobutton p-radiobutton-box:hover {
         border-color: var(--primary-bg-color);
       }
 
-      ::ng-deep .p-inputtext:enabled:focus {
+      ::ng-deep .p-inputtext:enabled:focus,
+      ::ng-deep .p-dropdown:first-child.p-focus {
         box-shadow: 0 0 5px var(--primary-bg-color);
       }
 
@@ -76,10 +79,15 @@ section {
       color: var(--primary-text-color);
       border: 0;
     }
-  }
 
-  #no-records {
-    width: 100%;
-    margin-left: 100px;
+    ::ng-deep .p-checkbox:nth-child(2) {
+      background-color: var(--primary-bg-color) !important;
+      border-color: var(--primary-bg-color) !important;
+    }
+
+    ::ng-deep .p-paginator .p-paginator-page.p-paginator-page .p-paginator-element {
+      background-color: var(--primary-bg-color) !important;
+      color: white !important;
+    }
   }
 }

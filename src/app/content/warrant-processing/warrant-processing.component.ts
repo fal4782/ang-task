@@ -34,10 +34,11 @@ interface Warrant {
 export class WarrantProcessingComponent {
   filterForm: any;
   workflowStates: WorkflowState[];
+  workflowLabel: any;
   courtNames: CourtName[];
   allPrintStatus: any[];
   warrants: Warrant[];
-  selectedWarrant!: Warrant;
+  selectedWarrants!: Warrant;
   primaryBgColor: any = '#2196F3'; //initital blue
   primaryTextColor: any = 'white';
   filters: any;
@@ -49,25 +50,13 @@ export class WarrantProcessingComponent {
     private commonService: CommonService,
     private dateService: DateService
   ) {}
+
   prerequisite() {
-    this.workflowStates = [
-      { warrantStateCode: 395, warrantState: 'Vacate order' },
-      { warrantStateCode: 330, warrantState: 'Received By police' },
-    ];
-
-    this.courtNames = [
-      { courtName: 'Kingston Parish Court' },
-      { courtName: 'Kingston Jewish Court' },
-    ];
-
-    this.allPrintStatus = [
-      { status: 'Printed', key: 'P' },
-      { status: 'Not Printed', key: 'NP' },
-      { status: 'Both', key: 'B' },
-    ];
-
+    this.configureWorkflowState();
+    this.configureCourtName();
+    this.configurePrintStatus();
     this.createFilterForm();
-    this.getWarrantsList();
+    // this.getWarrantsList();
   }
 
   ngOnInit() {
@@ -102,6 +91,28 @@ export class WarrantProcessingComponent {
     );
   }
 
+  configureWorkflowState() {
+    this.workflowStates = [
+      { warrantStateCode: 395, warrantState: 'Vacate order' },
+      { warrantStateCode: 330, warrantState: 'Received By police' },
+    ].map((state) => ({
+      ...state,
+      workflowLabel: `${state.warrantStateCode} - ${state.warrantState}`,
+    }));
+  }
+
+  configureCourtName() {
+    this.courtNames = [{ courtName: 'Kingston Parish Court' }];
+  }
+
+  configurePrintStatus() {
+    this.allPrintStatus = [
+      { status: 'Printed', key: 'P' },
+      { status: 'Not Printed', key: 'NP' },
+      { status: 'Both', key: 'B' },
+    ];
+  }
+
   createFilterForm() {
     this.filterForm = this.formBuilder.group({
       warrantRefNo: [],
@@ -112,7 +123,6 @@ export class WarrantProcessingComponent {
       workflowState: [],
       courtName: [],
       printStatus: [],
-      selectedCity: [],
     });
   }
 
@@ -138,15 +148,17 @@ export class WarrantProcessingComponent {
       printStatus: this.filterFormControls.printStatus.value,
     };
 
+    console.log('filters: ', this.filters);
+
     this.noOfFilters = 0; //reset for every form submission
     this.chips = [];
     this.getWarrantsList();
-    console.log('chips', this.chips);
+    // console.log('chips', this.chips);
   }
 
   getWarrantsList() {
     this.commonService.getWarrantsData().subscribe((data) => {
-      console.log('getting warrants list');
+      //   console.log('getting warrants list');
 
       // Filter by warrantRefNo
       if (this.filters?.warrantRefNo) {
@@ -191,10 +203,23 @@ export class WarrantProcessingComponent {
         this.chips.push('Offender Name');
       }
 
+      //Filter by Workflow Status
+      if (this.filters?.workflowState) {
+        data = data.filter(
+          (warrant) =>
+            warrant.warrantStateCode ===
+            this.filters.workflowState.warrantStateCode
+        );
+        this.noOfFilters++;
+        this.chips.push('Workflow State');
+      }
+
       //Filter by Court
       if (this.filters?.courtName) {
         data = data.filter((warrant) =>
-          warrant.courtName.toString().includes(this.filters.courtName)
+          warrant.courtName
+            .toString()
+            .includes(this.filters.courtName.courtName)
         );
         this.noOfFilters++;
         this.chips.push('Court');
@@ -217,41 +242,39 @@ export class WarrantProcessingComponent {
   }
 
   removeChip(chip: string) {
-    console.log('chip clicked: ', chip);
+    // Remove the chip from the array
+    const chipIndex = this.chips.indexOf(chip);
 
-    const index = this.chips.indexOf(chip);
-    console.log('index of chip clicked: ', index);
+    if (chipIndex !== -1) {
+      this.chips.splice(chipIndex, 1);
+    }
 
-    if (index !== -1) {
-      this.chips.splice(index, 1);
-      console.log('chips after slicing: ', this.chips);
-
-      // Clear the specific form control associated with the removed chip
-      switch (chip) {
-        case 'Warrant Ref No':
-          this.filterFormControls.warrantRefNo.reset();
-          break;
-        case 'Issue Date':
-          this.filterFormControls.issueDateStart.reset();
-          this.filterFormControls.issueDateEnd.reset();
-          break;
-        case 'DL Number':
-          this.filterFormControls.dlNo.reset();
-          break;
-        case 'Offender Name':
-          this.filterFormControls.offenderName.reset();
-          break;
-        case 'Court':
-          this.filterFormControls.courtName.reset();
-          break;
-        case 'Print Status':
-          this.filterFormControls.printStatus.reset();
-          break;
-        // Add additional cases for other chips if needed
-      }
-
-      this.noOfFilters--;
-      this.getWarrantsList();
+    switch (chip) {
+      case 'Warrant Ref No':
+        this.filterFormControls.warrantRefNo.reset();
+        break;
+      case 'Issue Date':
+        this.filterFormControls.issueDateStart.reset();
+        this.filterFormControls.issueDateEnd.reset();
+        break;
+      case 'DL Number':
+        this.filterFormControls.dlNo.reset();
+        break;
+      case 'Offender Name':
+        this.filterFormControls.offenderName.reset();
+        break;
+      case 'Workflow State':
+        this.filterFormControls.workflowState.reset();
+        break;
+      case 'Court':
+        this.filterFormControls.courtName.reset();
+        break;
+      case 'Print Status':
+        this.filterFormControls.printStatus.reset();
+        break;
+      default:
+        console.warn('Unexpected chip value:', chip);
+        break;
     }
   }
 

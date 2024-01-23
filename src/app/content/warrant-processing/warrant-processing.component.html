@@ -43,16 +43,11 @@
         <div class="row">
           <div class="input">
             <label for="workflowState">Workflow State</label>
-            <!-- {{ workflowStates | json }} -->
             <p-dropdown
               formControlName="workflowState"
               [options]="workflowStates"
-              optionLabel="warrantStateCode"
-            ></p-dropdown>
-            <p-dropdown
-              formControlName="selectedCity"
-              optionLabel="name"
-              placeholder="Select a City"
+              optionLabel="workflowLabel"
+              placeholder="Select Workflow State"
             ></p-dropdown>
           </div>
           <div class="input">
@@ -61,6 +56,7 @@
               formControlName="courtName"
               [options]="courtNames"
               optionLabel="courtName"
+              placeholder="Select Court"
             ></p-dropdown>
           </div>
         </div>
@@ -107,11 +103,11 @@
       <p-table
         [value]="warrants"
         [paginator]="true"
-        [rows]="5"
+        [rows]="3"
         [showCurrentPageReport]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [rowsPerPageOptions]="[5, 10, 15]"
-        [(selection)]="selectedWarrant"
+        [rowsPerPageOptions]="[3, 5, 10]"
+        [(selection)]="selectedWarrants"
         dataKey="code"
         [tableStyle]="{ 'min-width': '50rem' }"
       >
@@ -131,7 +127,6 @@
             <th>State</th>
           </tr>
         </ng-template>
-
         <ng-template pTemplate="body" let-warrant>
           <tr>
             <td>
@@ -150,6 +145,12 @@
             <td>{{ warrant.printStatus }}</td>
             <td>{{ warrant.warrantState }}</td>
           </tr>
+          
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="10" class="text-center py-5">No records found</td>
+            </tr>
         </ng-template>
       </p-table>
     </p-fieldset>
