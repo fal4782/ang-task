@@ -1,0 +1,124 @@
+section {
+  margin-bottom: 40px;
+
+  .row {
+    display: flex;
+    margin-bottom: 30px;
+    gap: 10px;
+
+    &:nth-last-child(3),
+    &:nth-last-child(2) {
+      margin-bottom: 10px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+      justify-content: end;
+    }
+
+    .input {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      flex: 1;
+      margin-right: 10px;
+
+      label {
+        font-size: 16px;
+      }
+
+      ::ng-deep .p-inputnumber,
+      ::ng-deep .p-dropdown {
+        width: 100%;
+      }
+
+      ::ng-deep .p-inputtext:enabled:hover,
+      ::ng-deep .p-inputtext:enabled:focus,
+      ::ng-deep .p-dropdown:first-child:hover,
+      ::ng-deep .p-dropdown:not(.p-disabled).p-focus,
+      ::ng-deep
+        .p-radiobutton
+        .p-radiobutton-box:not(.p-disabled):not(.p-highlight):hover {
+        border-color: var(--primary-bg-color);
+      }
+
+      ::ng-deep .p-inputtext:enabled:focus,
+      ::ng-deep .p-dropdown:first-child.p-focus,
+      ::ng-deep .p-radiobutton .p-radiobutton-box:not(.p-disabled).p-focus {
+        box-shadow: 0 0 5px var(--primary-bg-color);
+      }
+
+      .date-wrapper,
+      .wrapper {
+        display: flex;
+        gap: 10px;
+
+        ::ng-deep p-calendar {
+          width: 100%;
+
+          span {
+            width: 100%;
+            .p-button-icon-only {
+              border-color: var(--primary-bg-color) !important;
+              background-color: var(--primary-bg-color) !important;
+              color: var(--primary-text-color) !important;
+            }
+          }
+        }
+
+        ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight {
+          background-color: var(--primary-bg-color);
+          border: var(--primary-bg-color);
+        }
+      }
+    }
+
+    ::ng-deep .p-chip {
+      background-color: var(--primary-bg-color);
+      color: var(--primary-text-color);
+    }
+
+    ::ng-deep .p-button {
+      background-color: var(--primary-bg-color);
+      color: var(--primary-text-color);
+      border: 0;
+      &:focus {
+        box-shadow: 0 0 5px var(--primary-bg-color);
+      }
+    }
+  }
+
+  //table checkbox
+  ::ng-deep .p-checkbox .p-checkbox-box.p-highlight,
+  ::ng-deep .p-checkbox .p-checkbox-box.p-highlight:hover {
+    background-color: var(--primary-bg-color);
+    border-color: var(--primary-bg-color);
+    svg {
+      color: var(--primary-text-color);
+    }
+  }
+
+  ::ng-deep .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+    border-color: var(--primary-bg-color);
+  }
+
+  //paginator
+  ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight,
+  ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+    background-color: var(--primary-bg-color) !important;
+    color: var(--primary-text-color) !important;
+  }
+  ::ng-deep .p-link:focus {
+    box-shadow: 0 0 5px var(--primary-bg-color);
+  }
+
+  //paginator dropdown
+  ::ng-deep .p-dropdown:first-child:hover,
+  ::ng-deep .p-dropdown:not(.p-disabled).p-focus {
+    border-color: var(--primary-bg-color);
+  }
+
+  ::ng-deep .p-dropdown:first-child.p-focus {
+    box-shadow: 0 0 5px var(--primary-bg-color);
+  }
+}
