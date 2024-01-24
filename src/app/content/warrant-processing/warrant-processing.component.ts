@@ -38,7 +38,7 @@ export class WarrantProcessingComponent {
   courtNames: CourtName[];
   allPrintStatus: any[];
   warrants: Warrant[];
-  selectedWarrants!: Warrant;
+  selectedWarrants: Warrant;
   primaryBgColor: any = '#2196F3'; //initital blue
   primaryTextColor: any = 'white';
   filters: any;
@@ -56,6 +56,7 @@ export class WarrantProcessingComponent {
     this.configureCourtName();
     this.configurePrintStatus();
     this.createFilterForm();
+
     // this.getWarrantsList();
   }
 
