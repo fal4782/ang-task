@@ -1,1 +1,67 @@
-<h1>Issue eTicket</h1>
+<div class="card">
+  <h5>Issue eTicket</h5>
+
+  <section id="data-table">
+    <p-fieldset legend="List of Warrants" [toggleable]="true">
+      <p-table
+        [value]="warrants"
+        [paginator]="true"
+        [rows]="3"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[3, 5, 10]"
+        [(selection)]="selectedWarrants"
+        selectionMode="multiple"
+        dataKey="warrantRefNo"
+        [tableStyle]="{ 'min-width': '50rem' }"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 4rem">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th>Reference No</th>
+            <th>Issue Date</th>
+            <th>DL Number</th>
+            <th>Offender Name</th>
+            <th>Court</th>
+            <th>Hearing Court Date</th>
+            <th>Warrant Court Date</th>
+            <th>Action</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-warrant>
+          <tr>
+            <td>
+              <p-tableCheckbox [value]="warrant"></p-tableCheckbox>
+            </td>
+            <td>{{ warrant.warrantRefNo }}</td>
+            <td>{{ warrant.issueDate | date : "dd.MM.YYYY" }}</td>
+            <td>{{ warrant.idNumber }}</td>
+            <td>
+              {{ warrant.firstName }} {{ warrant.middleName }}
+              {{ warrant.lastname }}
+            </td>
+            <td>{{ warrant.courtName }}</td>
+            <td>{{ warrant.courtHearingDate | date : "dd.MM.YYYY" }}</td>
+            <td>{{ warrant.warrantDate | date : "dd.MM.YYYY" }}</td>
+            <td>
+              <input
+                type="text"
+                pInputText
+                [disabled]="!isSelected(warrant)"
+                [ngClass]="{ 'disabled-input': !isSelected(warrant) }"
+                [(ngModel)]="warrant.customField"
+              />
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="10" class="text-center py-5">No records found</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-fieldset>
+  </section>
+</div>
