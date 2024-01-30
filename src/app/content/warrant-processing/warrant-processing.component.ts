@@ -44,6 +44,7 @@ export class WarrantProcessingComponent {
   filters: any;
   noOfFilters = 0;
   chips: any[];
+  siteTheme: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -56,7 +57,6 @@ export class WarrantProcessingComponent {
     this.configureCourtName();
     this.configurePrintStatus();
     this.createFilterForm();
-
     // this.getWarrantsList();
   }
 
@@ -70,26 +70,14 @@ export class WarrantProcessingComponent {
   }
 
   setSiteTheme() {
-    this.primaryBgColor = JSON.parse(localStorage.getItem('siteTheme'));
+    this.siteTheme = this.commonService.getStoredTheme();
 
-    if (
-      this.primaryBgColor.theme === 'lime' ||
-      this.primaryBgColor.theme === 'yellow'
-    ) {
-      this.primaryTextColor = 'black';
-    } else {
-      this.primaryTextColor = 'white';
+    if (this.siteTheme) {
+      this.commonService.applyThemeStyles(
+        this.siteTheme.theme,
+        this.siteTheme.color
+      );
     }
-
-    // Apply the color to a CSS variable
-    document.documentElement.style.setProperty(
-      '--primary-bg-color',
-      this.primaryBgColor.color
-    );
-    document.documentElement.style.setProperty(
-      '--primary-text-color',
-      this.primaryTextColor
-    );
   }
 
   configureWorkflowState() {

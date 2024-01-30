@@ -22,6 +22,7 @@ interface Warrant {
 export class IssueEticketComponent {
   warrants: Warrant[];
   selectedWarrants: Warrant[] = [];
+  siteTheme: any;
 
   constructor(private commonService: CommonService) {}
 
@@ -31,6 +32,21 @@ export class IssueEticketComponent {
 
   ngOnInit() {
     this.prerequisite();
+  }
+
+  ngDoCheck() {
+    this.setSiteTheme();
+  }
+
+  setSiteTheme() {
+    this.siteTheme = this.commonService.getStoredTheme();
+
+    if (this.siteTheme) {
+      this.commonService.applyThemeStyles(
+        this.siteTheme.theme,
+        this.siteTheme.color
+      );
+    }
   }
 
   getWarrantsList() {
