@@ -11,8 +11,6 @@ interface Warrant {
   courtName: string;
   courtHearingDate: Date;
   warrantDate: Date;
-  //   printStatus: string;
-  //   warrantState: string;
   customField?: string;
 }
 
