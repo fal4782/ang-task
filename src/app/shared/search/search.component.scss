@@ -14,3 +14,19 @@
 ::ng-deep .p-inputtext {
   width: 100%;
 }
+
+//input fields
+::ng-deep .p-inputtext:enabled:hover,
+::ng-deep .p-inputtext:enabled:focus {
+  border-color: var(--primary-bg-color);
+}
+
+::ng-deep .p-inputtext:enabled:focus {
+  box-shadow: 0 0 5px var(--primary-bg-color);
+}
+
+//dropdown
+::ng-deep .p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item.p-highlight{
+    background-color: var(--primary-bg-color);
+    color: var(--primary-text-color);
+}
