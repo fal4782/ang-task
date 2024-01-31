@@ -26,17 +26,33 @@ export class SearchComponent {
   value: any;
   filteredmenuItems: any[] | undefined;
   @ViewChild('searchInput') searchInput: AutoComplete;
+  siteTheme:any
   
 
   ngOnInit() {
     this.prerequisite();
   }
 
+
   constructor(
     private commonService: CommonService,
-    private router: Router,
-    // private renderer: Renderer2
+    private router: Router
   ) {}
+
+  ngDoCheck() {
+    this.setSiteTheme();
+  }
+
+  setSiteTheme() {
+    this.siteTheme = this.commonService.getStoredTheme();
+
+    if (this.siteTheme) {
+      this.commonService.applyThemeStyles(
+        this.siteTheme.theme,
+        this.siteTheme.color
+      );
+    }
+  }
 
   showDialog() {
     if (this.searchDialogBox) {
